@@ -196,7 +196,7 @@ router.post(
     const { errors, isValid } = validateExperienceInput(req.body);
     // Check Validation
     if (!isValid) {
-      res.status(404).json(errors);
+      return res.status(404).json(errors);
     }
 
     Profile.findOne({ user: req.user._id })
@@ -244,7 +244,7 @@ router.post(
     const { errors, isValid } = validateEducationInput(req.body);
     // Check Validation
     if (!isValid) {
-      res.status(404).json(errors);
+      return res.status(404).json(errors);
     }
 
     Profile.findOne({ user: req.user._id })
