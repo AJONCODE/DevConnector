@@ -11,6 +11,7 @@ import store from "./store";
 import jwtDecode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { clearCurrentProfile } from "./actions/profileActions";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -29,6 +30,8 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     // Logout User (as a result Current User will be cleared)
     store.dispatch(logoutUser());
+    // Clear Current Profile
+    store.dispatch(clearCurrentProfile());
     // Redirect to login
     window.location.href = "/login";
   }

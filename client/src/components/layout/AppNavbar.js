@@ -11,8 +11,10 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
+
+import { logoutUser } from "../../actions/authActions";
+import { clearCurrentProfile } from "../../actions/profileActions";
 
 class AppNavbar extends Component {
   constructor(props) {
@@ -28,6 +30,7 @@ class AppNavbar extends Component {
   };
 
   handleLogoutClick = event => {
+    this.props.clearCurrentProfile();
     this.props.logoutUser();
   };
 
@@ -94,6 +97,7 @@ class AppNavbar extends Component {
 
 AppNavbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
+  clearCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -103,5 +107,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, clearCurrentProfile }
 )(AppNavbar);

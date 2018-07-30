@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
 import { registerUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Register extends Component {
   constructor(props) {
@@ -66,66 +66,49 @@ class Register extends Component {
               </p>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <input
+                  <TextFieldGroup
                     type="text"
-                    // className="form-control form-control-lg"
-                    className={classnames("form-control form-control-lg", {
-                      // is-invalid is a bootstrap class for validation
-                      // is-invalid class will only apply if errors.name exist
-                      "is-invalid": errors.name
-                    })}
+                    error={errors.name}
                     placeholder="Name"
                     name="name"
                     value={this.state.name}
                     onChange={this.handleChange}
                   />
-                  <div className="invalid-feedback">{errors.name}</div>
                 </div>
+
                 <div className="form-group">
-                  <input
+                  <TextFieldGroup
                     type="email"
-                    // className="form-control form-control-lg"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.email
-                    })}
+                    error={errors.email}
                     placeholder="Email Address"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
+                    info="This site uses Gravatar so if you want a profile image, use
+                        a Gravatar email"
                   />
-                  <small className="form-text text-muted">
-                    This site uses Gravatar so if you want a profile image, use
-                    a Gravatar email
-                  </small>
-                  <div className="invalid-feedback">{errors.email}</div>
                 </div>
+
                 <div className="form-group">
-                  <input
+                  <TextFieldGroup
                     type="password"
-                    // className="form-control form-control-lg"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password
-                    })}
+                    error={errors.password}
                     placeholder="Password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleChange}
                   />
-                  <div className="invalid-feedback">{errors.password}</div>
                 </div>
+
                 <div className="form-group">
-                  <input
+                  <TextFieldGroup
                     type="password"
-                    // className="form-control form-control-lg"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password2
-                    })}
+                    error={errors.password2}
                     placeholder="Confirm Password"
                     name="password2"
                     value={this.state.password2}
                     onChange={this.handleChange}
                   />
-                  <div className="invalid-feedback">{errors.password2}</div>
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>

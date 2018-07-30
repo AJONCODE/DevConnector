@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { loginUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor(props) {
@@ -67,32 +67,24 @@ class Login extends Component {
               </p>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <input
+                  <TextFieldGroup
                     type="email"
-                    // className="form-control form-control-lg"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.email
-                    })}
+                    error={errors.email}
                     placeholder="Email Address"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
                   />
-                  <div className="invalid-feedback">{errors.email}</div>
                 </div>
                 <div className="form-group">
-                  <input
+                  <TextFieldGroup
                     type="password"
-                    //className="form-control form-control-lg"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password
-                    })}
+                    error={errors.password}
                     placeholder="Password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleChange}
                   />
-                  <div className="invalid-feedback">{errors.password}</div>
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
