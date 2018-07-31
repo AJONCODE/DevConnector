@@ -40,6 +40,11 @@ class AppNavbar extends Component {
     const authLinks = (
       <Nav className="ml-auto" navbar>
         <NavItem>
+          <NavLink tag={Link} to="/dashboard">
+            Dashboard
+          </NavLink>
+        </NavItem>
+        <NavItem>
           <NavLink tag={Link} to="/" onClick={this.handleLogoutClick}>
             <img
               className="rounded-circle"

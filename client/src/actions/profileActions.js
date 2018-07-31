@@ -3,7 +3,8 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
-  GET_ERRORS
+  GET_ERRORS,
+  SET_CURRENT_USER
 } from "./types";
 
 // Get Current Profile
@@ -39,6 +40,32 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
+// Add Experience
+export const addExperience = (experienceData, history) => dispatch => {
+  axios
+    .post("/api/profile/experience", experienceData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Add Education
+export const addEducation = (educationData, history) => dispatch => {
+  axios
+    .post("/api/profile/education", educationData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Profile Loading
 export const setProfileLoading = () => {
   return {
@@ -51,4 +78,62 @@ export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
   };
+};
+
+// Delete Experience
+export const deleteExperience = experience_id => dispatch => {
+  console.log(experience_id);
+  axios
+    .delete(`/api/profile/experience/${experience_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Education
+export const deleteEducation = education_id => dispatch => {
+  console.log(education_id);
+  axios
+    .delete(`/api/profile/education/${education_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Profile and Account
+export const deleteAccount = () => dispatch => {
+  if (window.confirm("Are you sure, this will not be undone!")) {
+    axios
+      .delete("/api/profile")
+      .then(res =>
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {}
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      );
+  }
 };
