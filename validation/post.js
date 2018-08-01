@@ -7,8 +7,8 @@ const validatePostInput = data => {
 
   data.text = !isEmpty(data.text) ? data.text : "";
 
-  if (!Validator.isLength(data.text, { min: 10, max: 30 })) {
-    errors.text = "Post must be between 10 and 30 characters";
+  if (!Validator.isLength(data.text, { min: 10, max: 50 })) {
+    errors.text = "Post must be between 10 and 50 characters";
   }
 
   if (Validator.isEmpty(data.text)) {

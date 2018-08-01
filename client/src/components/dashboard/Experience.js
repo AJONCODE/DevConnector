@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Moment from "react-moment"; // Used for formatting date
+import Moment from "react-moment"; // Used for formatting date Also install moment package
 
 import { deleteExperience } from "../../actions/profileActions";
 

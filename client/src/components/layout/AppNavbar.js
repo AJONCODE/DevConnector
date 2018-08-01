@@ -40,6 +40,11 @@ class AppNavbar extends Component {
     const authLinks = (
       <Nav className="ml-auto" navbar>
         <NavItem>
+          <NavLink tag={Link} to="/feed">
+            Post Feed
+          </NavLink>
+        </NavItem>
+        <NavItem>
           <NavLink tag={Link} to="/dashboard">
             Dashboard
           </NavLink>
@@ -86,7 +91,7 @@ class AppNavbar extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav navbar className="mr-auto">
                 <NavItem>
-                  <NavLink tag={Link} to="#">
+                  <NavLink tag={Link} to="/profiles">
                     Developers
                   </NavLink>
                 </NavItem>
