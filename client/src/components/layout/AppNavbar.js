@@ -30,7 +30,7 @@ class AppNavbar extends Component {
   };
 
   handleLogoutClick = event => {
-    e.preventDefault();
+    event.preventDefault();
     this.props.clearCurrentProfile();
     this.props.logoutUser();
   };
